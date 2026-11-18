@@ -25,7 +25,7 @@ Run lint and typecheck before declaring any task done.
 
 ## Navigation & Routing
 
-- Use **Expo Router** for all navigation. Routes live in `src/app/` — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code (components, hooks, utils) outside `src/app/`.
+- Use **Expo Router** for all navigation. Routes live in `app/` (project root; this project does not use `src/`) — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code (components, hooks, utils) outside `app/`.
 - Import `Link`, `router`, and `useLocalSearchParams` from `expo-router`.
 - Docs: https://docs.expo.dev/router/introduction.md
 
@@ -39,3 +39,11 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+
+## Project conventions (MathArt Connect)
+
+- Read `docs/ARCHITECTURE.md` first. The Calculus topic is configurable content (`content/`); never hard-code a topic in screens.
+- Use semantic theme roles (`useAppTheme().colors.*`); never raw hex outside `theme/tokens/palette.ts`. No purple/violet/indigo brand colours.
+- Screens never call supabase-js directly; use `services/` repositories, which return `ServiceResult`.
+- Never claim the app improves performance; use "Designed to support Calculus learning."
+- Run `npm run check` before declaring work done.

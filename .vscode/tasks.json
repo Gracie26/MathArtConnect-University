@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start MathArt Connect (Presentation)",
+      "detail": "Runs when the folder opens: npx.cmd expo start --lan. Skips if MathArt Connect already runs on port 8081; rebuilds the Metro cache (-c) once only if it is damaged. No Expo Doctor.",
+      "type": "process",
+      "command": "cmd.exe",
+      "args": ["/d", "/c", "${workspaceFolder}\\start-presentation.cmd"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true, "clear": true },
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 }
+    },
+    {
+      "label": "Start MathArt Connect",
+      "detail": "Full start (manual): dependency and native-tool checks, expo-doctor, then Expo on LAN + opens the web app",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\start-mathart.ps1"],
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true, "clear": true },
+      "runOptions": { "instanceLimit": 1 }
+    },
+    {
+      "label": "Start MathArt Connect (clear cache)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\start-mathart.ps1", "-Clear"],
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true, "clear": true },
+      "runOptions": { "instanceLimit": 1 }
+    }
+  ]
+}
